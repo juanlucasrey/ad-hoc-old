@@ -1,18 +1,11 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
-#include "../Catch/single_include/catch.hpp"
+//          Copyright Juan Lucas Rey 2015 - 2016.
+// Distributed under the Boost Software License, Version 1.0.
+//    (See accompanying file LICENSE_1_0.txt or copy at
+//          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "../include/bdouble.h"
-
-unsigned int Factorial( unsigned int number ) {
-    return number <= 1 ? number : Factorial(number-1)*number;
-}
-
-TEST_CASE( "Factorials are computed", "[factorial]" ) {
-    REQUIRE( Factorial(1) == 1 );
-    REQUIRE( Factorial(2) == 2 );
-    REQUIRE( Factorial(3) == 6 );
-    REQUIRE( Factorial(10) == 3628800 );
-}
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+#include "bdouble.h"
 
 TEST_CASE( "Multiplication is computed", "[multiplication]" )
 {
@@ -28,12 +21,10 @@ TEST_CASE( "Multiplication is computed", "[multiplication]" )
     der = y.der(x1);
     testvalue = 1.0;
     REQUIRE( der == testvalue );
-    //XCTAssertEqual(der,testvalue);
     
     der = y.der(x2);
     testvalue = 1.5;
     REQUIRE( der == testvalue );
-    //XCTAssertEqual(der,testvalue);
     
     bdouble::clear_tape();
 }
