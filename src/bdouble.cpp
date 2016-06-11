@@ -1502,7 +1502,7 @@ void bdouble::run_tape(const size_t orderOverride)
                             break;
                     }
                     
-                    vector<vector<double>> der_mult_cache(mOrder);
+                    vector<vector<double> > der_mult_cache(mOrder);
                     for(size_t i = 1; i <= der_mult_cache.size(); i++)
                     {
                         der_mult_cache[i-1].resize(i,0);
@@ -1577,7 +1577,7 @@ void bdouble::run_tape(const size_t orderOverride)
                             //want to avoid calling them multiple times.
                             //in this case we cache all partial derivs
                             //in res and arg
-                            vector<vector<double>> derivstemp(order);
+                            vector<vector<double> > derivstemp(order);
                             for(size_t i = 1; i <= derivstemp.size(); i++)
                             {
                                 derivstemp[i-1].resize(i,0);
@@ -1751,7 +1751,7 @@ void bdouble::run_tape(const size_t orderOverride)
                         while(order > 0)
                         {
                             idxes[res_pos+1] = order;
-                            vector<vector<double>> derivsarg1and2;
+                            vector<vector<double> > derivsarg1and2;
                             derivsarg1and2.resize(order);
                             for(size_t i = 0; i < order; i++)
                             {
@@ -1894,7 +1894,7 @@ void bdouble::run_tape(const size_t orderOverride)
                     
                     double x1 = (*val_trace_rev_it++);
                     double x2 = (*val_trace_rev_it++);
-                    vector<vector<double>> d_g_x1_x2;
+                    vector<vector<double> > d_g_x1_x2;
                     
                     //create the triangle
                     d_g_x1_x2.resize(mOrder+1);
@@ -1932,7 +1932,7 @@ void bdouble::run_tape(const size_t orderOverride)
                         size_t order = 1+idxes_sparse[0];
                         idxes[0] = 0;
                         
-                        vector<vector<vector<double>>> d_f_x1_x2_y;
+                        vector<vector<vector<double> > > d_f_x1_x2_y;
                         d_f_x1_x2_y.resize(order);
                         for(size_t i = 0; i < order; i++)
                         {
