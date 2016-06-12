@@ -3,11 +3,12 @@
 //    (See accompanying file LICENSE_1_0.txt or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#define BOOST_TEST_MODULE test module name
+#include <boost/test/included/unit_test.hpp>
+#include <boost/test/floating_point_comparison.hpp>
 #include "bdouble.h"
 
-TEST_CASE( "Multiplication is computed", "[multiplication]" )
+BOOST_AUTO_TEST_CASE( Multiplication )
 {
     bdouble::clear_tape();
     bdouble::setOrder(1);
@@ -20,11 +21,11 @@ TEST_CASE( "Multiplication is computed", "[multiplication]" )
     
     der = y.der(x1);
     testvalue = 1.0;
-    REQUIRE( der == testvalue );
+    BOOST_CHECK_EQUAL(der, testvalue);
     
     der = y.der(x2);
     testvalue = 1.5;
-    REQUIRE( der == testvalue );
+    BOOST_CHECK_EQUAL(der, testvalue);
     
     bdouble::clear_tape();
 }
