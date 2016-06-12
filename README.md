@@ -1,5 +1,6 @@
-# ad-hoc
-Automatic Differentiation with High Order Calculations
+## ad-hoc
+
+> Automatic Differentiation with High Order Calculations
 
 CMake and Boost required (install with Brew or another package manager)
 
