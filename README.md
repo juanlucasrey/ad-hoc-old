@@ -4,7 +4,7 @@
 
 CMake and Boost required: 
 
--for unix systems, install Boost and CMake with Brew or another package manager
+-for unix systems, install Boost and CMake with Brew, apt-get or another package manager
 
 -for Windows, install CMake from https://cmake.org/download/ 
 
