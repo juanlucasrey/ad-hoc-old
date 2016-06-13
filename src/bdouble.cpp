@@ -4,6 +4,11 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "bdouble.h"
+
+#ifdef _WIN32
+	#define _USE_MATH_DEFINES
+#endif
+
 #include <cmath>
 #include <algorithm>
 #include <stack>
@@ -15,7 +20,7 @@ size_t bdouble::mDefaultOrder = 1;
 //tape
 vector<size_t> bdouble::op_trace(0,0);
 vector<size_t> bdouble::index_trace(0,0);
-vector<double> bdouble::val_trace(0.0,0);
+vector<double> bdouble::val_trace;
 size_t bdouble::indexcount = 0;
 
 bdouble::bdouble(const double& rhs)
@@ -861,7 +866,7 @@ void TE_tan(const double& value,vector<double>& output,size_t loc = 0)
             fval_coeffs[i] = 0;
             if(i)
             {
-                double temp = current_coeff*(int)i;
+                int temp = current_coeff*(int)i;
                 fval_coeffs[i-1] += temp;
                 fval_coeffs[i+1] += temp;
             }
@@ -869,7 +874,7 @@ void TE_tan(const double& value,vector<double>& output,size_t loc = 0)
         odd = !odd;
         
         double fval_der = 0;
-        for(size_t i = (loc+1); i > odd; i-=2)
+        for(size_t i = (loc+1); i > (size_t)odd; i-=2)
         {
             fval_der += fval_coeffs[i];
             fval_der *= fval_sq;
@@ -910,7 +915,7 @@ void TE_tanh(const double& value,vector<double>& output,size_t loc = 0)
             fval_coeffs[i] = 0;
             if(i)
             {
-                double temp = current_coeff*(int)i;
+                int temp = current_coeff*(int)i;
                 fval_coeffs[i-1] += temp;
                 fval_coeffs[i+1] -= temp;
             }
@@ -918,7 +923,7 @@ void TE_tanh(const double& value,vector<double>& output,size_t loc = 0)
         odd = !odd;
         
         double fval_der = 0;
-        for(size_t i = (loc+1); i > odd; i-=2)
+        for(size_t i = (loc+1); i > (size_t)odd; i-=2)
         {
             fval_der += fval_coeffs[i];
             fval_der *= fval_sq;
